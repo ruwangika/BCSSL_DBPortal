@@ -1,0 +1,129 @@
+.portal-header{
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.page-title{
+    font-size: 36px;
+    font-family: 'Lato', sans-serif;
+    color: #333333;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    margin-top: 25px;
+    top: 15px;
+    width:100%;
+    text-align:center;
+}
+
+.portal-button{
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    cursor: pointer;
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #333333;
+    text-align: center;
+    background-color: inherit; /* Green */
+    border: none;
+    padding: 3px 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.portal-button:hover {
+    background-color: lightgray;
+}
+
+h2 {
+    font-size: 25px !important;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: lighter !important;
+    margin-bottom: 30px !important;
+    color: #333333;    
+}
+
+.logo {
+    width: 90%;
+    margin: 0px 10px;
+}
+
+.container {
+    margin-left: 10px;
+}
+
+a {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    height: 50px;
+}
+
+.section-title {
+    margin-left: 0px;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter !important;
+    color: #333333; 
+}
+
+.label-1{
+    margin-top: 8px;
+    margin-left: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: inherit;
+    text-align: left;
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #999999;
+  border-radius: 3px;
+  color: #333333;
+  background-color: inherit;
+  font-family: 'Lato', sans-serif;
+  font-size: inherit;
+}
+ 
+/*input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px #B88F51;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #B88F51;
+}*/
+
+.section {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+
+.combo-1{
+    text-align: left;
+    color: #333333;
+    width: 190px; 
+    background-color: inherit;   
+    margin-top: 8px;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    padding: 3px 0px 3px 3px;
+    
+}
+
+.combo-1:focus{
+  box-shadow: 0 0 5px #666666;
+  border: 1px solid #666666;
+}
+
