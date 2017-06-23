@@ -22,25 +22,27 @@
 </head>
 
 <body>
+<!--Side nav bar-->
     <nav class="w3-sidenav w3-white w3-card-2" style="width:18%">
         <br>
         <img src="img/logo.png" class="logo">
         <div style="width: 100%; height: 80px"></div>
         <a href="#" onclick="addMemberModalOpen()">Add Member</a>
         <a href="#" onclick="sendMailModalOpen()">Send Email</a>
-        <a href="#">Find a Member</a>
-        <a href="#">Renew Membership</a>
+        <a href="#" onclick="findMemberModalOpen()">Find a Member</a>
+        <a href="#" onclick="renewMembershipModalOpen()">Renew Membership</a>
     </nav>
 
     <div style="margin-left:18%">
 
         <header class="portal-header w3-container">
-            <h1 class="page-title">DB Portal</h1>
+            <h1 class="page-title">Admin Portal</h1>
             <button class="portal-button">LOGOUT</button>
         </header>
 
-        <div class="w3-container" style="width: 100%; height: 50px; margin-top: 90px"></div>
+        <div class="w3-container" style="width: 100%; height: 80px; margin-top: 20px"></div>
 
+<!--Add Member modal-->
         <div id="addMemberModal" class="w3-container">
             <h2>Enter details:</h2>
             <div class="w3-row w3-container" >
@@ -48,7 +50,7 @@
                     <p class="label-1">Membership Number</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="memberIdText" style="width:100%">
+                    <input type="text" id="memberIdText">
                 </div>   
             </div>            
             <div class="w3-row w3-container" >
@@ -56,7 +58,7 @@
                     <p class="label-1">Name</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="nameText" style="width:100%">
+                    <input type="text" id="nameText">
                 </div>   
             </div> 
             <div class="w3-row w3-container" >
@@ -64,7 +66,7 @@
                     <p class="label-1">Email</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="emailText" style="width:100%">
+                    <input type="text" id="emailText">
                 </div>   
             </div>    
             <div class="w3-row w3-container" >
@@ -72,7 +74,7 @@
                     <p class="label-1">Address</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="addressText" style="width:100%">
+                    <textarea id="addressText" rows="5" style="height:20%"></textarea>
                 </div>   
             </div>  
             <div class="w3-row w3-container" >
@@ -80,7 +82,7 @@
                     <p class="label-1">NIC</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="idText" style="width:100%">
+                    <input type="text" id="nicText">
                 </div>   
             </div> 
             <div class="w3-row w3-container" >
@@ -88,7 +90,7 @@
                     <p class="label-1">Date of Birth</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="bdaylText" style="width:100%">
+                    <input type="text" id="dobText">
                 </div>   
             </div>                                                   
             <div class="w3-row w3-container" >
@@ -96,7 +98,7 @@
                     <p class="label-1">Contact Number</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="contactNoText" style="width:100%">
+                    <input type="text" id="contactNoText">
                 </div>   
             </div>        
             <div class="w3-row w3-container" >
@@ -104,7 +106,7 @@
                     <p class="label-1">Category</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <select id="categoryText" style="width:100%">
+                    <select id="categoryCombo" class="combo-1">
                         <option value="" selected>General - 1 year</option>
                         <option value="">General - 5 year</option>
                         <option value="">School</option>
@@ -117,7 +119,7 @@
                     <p class="label-1">Receipt Number</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="receiptNoText" style="width:100%">
+                    <input type="text" id="receiptNoText">
                 </div>   
             </div>
             <div class="w3-row w3-container" >
@@ -125,16 +127,76 @@
                     <p class="label-1">Date of Registration</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="regDateText" style="width:100%">
+                    <input type="text" id="regDateText">
                 </div>   
-            </div>                    
+            </div> 
+
+            <div class="w3-container" style="width: 100%; height: 10px; margin-top: 20px"></div>
+
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:65%">
+                    <button id="submitBtn" onclick="addMember()" style="float:right">SUBMIT</button>  
+                </div>   
+            </div>                  
         </div>
 
+<!--Send Email modal-->
         <div id="sendMailModal" class="w3-container">
-            <h2>Enter text here:</h2>
+            <h2>Compose your message:</h2>
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Send to:</p>
+                </div>
+                <div class="w3-col w3-container" style="width:40%">
+                    <input type="text" id="recipientText"></textarea>
+                </div>   
+            </div>
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Subject</p>
+                </div>
+                <div class="w3-col w3-container" style="width:60%">
+                    <textarea id="subjectText" rows="2"></textarea>
+                </div>   
+            </div>            
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Text</p>
+                </div>            
+                <div class="w3-col w3-container" style="width:60%">
+                    <textarea id="mailText" rows="50" style="height:40%"></textarea>
+                </div>   
+            </div>
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Attachments</p>
+                </div>
+                <div class="w3-col w3-container" style="width:60%">
+                    <input type="text" id="attachBox"></textarea>
+                </div>   
+            </div>
+
+            <div class="w3-container" style="width: 100%; height: 10px; margin-top: 20px"></div>
+            
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:75%">
+                    <button id="sendMailBtn" onclick="sendMail()" style="float:right">SEND</button>  
+                </div>   
+            </div>            
         </div>
+
+<!--Find a Member modal-->
+        <div id="findMemberModal" class="w3-container">
+            <h2>Enter member ID:</h2>
+        </div>
+
+<!--Renew Membership modal-->
+        <div id="renewMembershipModal" class="w3-container">
+            <h2>Enter member ID or name:</h2>
+        </div>                
 
         <footer class="w3-container">
+            <div class="w3-container" style="width: 100%; height: 10px; margin-top: 20px"></div>            
         </footer>
 
     </div>
