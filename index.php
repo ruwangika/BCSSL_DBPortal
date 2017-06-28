@@ -107,10 +107,10 @@
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
                     <select id="categoryCombo" class="combo-1">
-                        <option value="" selected>General - 1 year</option>
-                        <option value="">General - 5 year</option>
-                        <option value="">School</option>
-                        <option value="">Foreign</option>
+                        <option value="local_1y" selected>General - 1 year</option>
+                        <option value="local_5y">General - 5 year</option>
+                        <option value="school">School</option>
+                        <option value="foreign">Foreign</option>
                     </select>
                 </div>   
             </div>        

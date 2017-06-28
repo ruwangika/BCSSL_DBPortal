@@ -116,6 +116,7 @@ function addMember(){
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
             console.log("Add member error.")
             console.log(XMLHttpRequest);
+            window.alert("Error!");
         }    
     });
 
