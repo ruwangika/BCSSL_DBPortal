@@ -4,6 +4,16 @@
 
 <html>
 
+<?php
+    if(isset($_SESSION["login_user"])){
+        $id = $_SESSION["login_user"];
+    }else{
+        $_SESSION['msg'] = "Welcome";
+        $id = "none";
+        echo "<script>location.href = 'login.php';</script>";
+    }
+?>
+
 <head>
     <title>BCSSL DB Portal</title>
 
@@ -37,7 +47,7 @@
 
         <header class="portal-header w3-container">
             <h1 class="page-title">Admin Portal</h1>
-            <button class="portal-button">LOGOUT</button>
+            <button class="portal-button" onclick="logout()">LOGOUT</button>
         </header>
 
         <div class="w3-container" style="width: 100%; height: 80px; margin-top: 20px"></div>

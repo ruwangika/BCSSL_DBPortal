@@ -125,3 +125,20 @@ function addMember(){
 function sendMail() {
     
 }
+
+function logout() {
+    $.ajax({
+        url: "logout.php",
+        method: "GET",
+        dataType: "text",
+        success: function(data, status) {
+            console.log("Logout : " + status);
+            location.href = 'login.php';
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest);
+
+        }
+    });
+
+}

@@ -1,6 +1,7 @@
 <?php
 
     require 'dbconn.php';
+    require 'mailserver.php';
 
     function getNameList(){
         $con = getConnection();
@@ -24,12 +25,14 @@
         $con = getConnection();
         $status = 1;
         $isAdmin = 0;
-        $sql = "INSERT INTO members_tab (ID, member_name, email, address, NIC, DoB, contactNo, category, receiptNo, dateOfReg, member_status, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO members_tab (ID, member_name, email, address, NIC, DoB, contactNo, category, receiptNo, dateOfReg, member_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         if ($stmt = mysqli_prepare($con, $sql)) {
-            mysqli_stmt_bind_param($stmt, "isssssssisii", $id, $name, $email, $address, $nic, $dob, $contactNo, $category, $receiptNo, $regDate, $status, $isAdmin);
+            mysqli_stmt_bind_param($stmt, "isssssssisi", $id, $name, $email, $address, $nic, $dob, $contactNo, $category, $receiptNo, $regDate, $status);
             mysqli_stmt_execute($stmt);            
             mysqli_stmt_close($stmt);
         }
+
+        sendMembershipMail($email);
     }
 
 ?>
