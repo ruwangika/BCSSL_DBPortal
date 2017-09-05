@@ -81,4 +81,34 @@
             mysqli_stmt_close($stmt);
         }
     }
+
+    function renewMembership($name, $regDate_renew, $receiptNo_renew) {
+        if ($name=="" || $regDate_renew=="" || $receiptNo_renew=="") {
+            return "nulldata";
+        }
+        $con = getConnection();
+        // Check if member exists
+        $id = 0;
+        $sql = "SELECT ID FROM members_tab WHERE member_name = ?;";
+        if ($stmt = mysqli_prepare($con, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $name);
+            mysqli_stmt_execute($stmt); 
+            mysqli_stmt_bind_result($stmt, $result);
+            while(mysqli_stmt_fetch($stmt)) {
+                $id = $result;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        if ($id == 0) {
+            return "notfound";
+        } else {
+            $status = 1;
+            $sql = "UPDATE members_tab SET date_renewed = ?, receiptNo_renewed = ?, member_status = ? WHERE member_name = ?;";
+            if ($stmt = mysqli_prepare($con, $sql)) {
+                mysqli_stmt_bind_param($stmt, "ssis", $regDate_renew, $receiptNo_renew, $status, $name);
+                mysqli_stmt_execute($stmt);            
+                mysqli_stmt_close($stmt);
+            }
+        }
+    }
 ?>

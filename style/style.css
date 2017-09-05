@@ -16,3 +16,96 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+/* Styles for typeahead */
+.bs-example{
+	font-family: sans-serif;
+	position: relative;
+	margin: 50px;
+}
+
+.typeahead, .tt-query, .tt-hint {
+	/* border: 2px solid #CCCCCC;
+	border-radius: 8px;
+	font-size: 24px;
+	height: 30px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 8px 12px;
+  width: 396px; */
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  height: 5%;
+  width: 100%;
+  padding: 3px 0px 3px 3px !important;
+  margin: 5px 1px 3px 0px !important;
+  border: 1px solid #999999;
+  border-radius: 3px;
+  color: #333333;
+  background-color: inherit;
+  font-family: 'Lato', sans-serif;
+  font-size: inherit;
+}
+
+.typeahead {
+	background-color: #FFFFFF;
+}
+
+.typeahead:focus {
+	border: 1px solid #0097CF;
+}
+
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+/* Change hint option in index.php */
+.tt-hint {
+	color: white;
+}
+
+.twitter-typeahead {
+  width: 100%;
+}
+
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px; */
+	/* padding: 8px 0; */
+	width: 100%;
+}
+
+.tt-suggestion {
+	font-size: inherit;
+	/* line-height: 24px;
+	padding: 3px 20px; */
+}
+
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+
+.tt-suggestion p {
+	margin: 0;
+}
+
+/*  */
+
+input:focus, textarea:focus {
+	border: 1px solid #0097CF;
+}
+
+.input, textarea {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+.input, textarea {
+	color: #999999;
+}

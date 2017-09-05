@@ -143,6 +143,41 @@ function addMember(){
 
 }
 
+function renewMembership() {
+    var name = document.getElementById("nameText_renew").value;
+    var regDate_renew = document.getElementById("regDateText_renew").value;
+    var receiptNo_renew = document.getElementById("receiptNoText_renew").value;
+
+    $.ajax({
+        url: "back/adapter.php",
+        method: "POST",
+        data: {
+            r_type: 'renew_membership',
+            name: name, 
+            regDate_renew: regDate_renew,
+            receiptNo_renew: receiptNo_renew
+        },
+        dataType: "text",
+        success: function(data, status) {
+            if (data=='"nulldata"') {
+                console.log(data);
+                window.alert("Enter data!");
+            } else if (data=='"notfound"') {
+                console.log(data);
+                window.alert("Member not found!");
+            } else {
+                console.log("Renew membership: " + status);
+                window.alert("Membership renewed.");
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            console.log("Renew membership error.")
+            console.log(XMLHttpRequest);
+            window.alert("Error!");
+        }    
+    });
+}
+
 function sendMail() {
     
 }
@@ -238,3 +273,23 @@ String.prototype.lpad = function(padString, length) {
 //         }
 //     }
 // })
+
+//
+
+// function initTypeaheadName() {
+//     $('#nameText_renew').typeahead({
+//         hint: false,
+//         name: 'typeahead',
+//         remote:'back/search.php?key=%QUERY',
+//         limit : 10,
+//     });
+// }
+
+// function initTypeaheadId() {
+//     $('#memberIdText_renew').typeahead({
+//         hint: false,
+//         name: 'typeahead',
+//         remote:'back/searchid.php?id=%QUERY',
+//         limit : 10,
+//     });
+// }

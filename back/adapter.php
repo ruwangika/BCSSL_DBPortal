@@ -10,8 +10,7 @@
 
     $type = $_POST["r_type"];
 
-    if($type == 'add_member') { 
-        
+    if($type == 'add_member') {         
         $memberId = $_POST["memberId"];
         $name = $_POST["name"];
         $email = $_POST["email"];
@@ -26,15 +25,26 @@
         $regDate = $_POST["regDate"];
 
         $data = addMemberToDb($memberId, $name, $email, $address, $nic, $dob, $gender, $contactNo, $contactNo_extra, $category, $receiptNo, $regDate);
-        echo json_encode($data);
-    
+        echo json_encode($data);    
     }
 
     if($type == 'get_id') { 
-
         $data = getMaxID();
-        echo $data;
-    
+        echo $data;    
+    }
+
+    if($type == 'renew_membership') {
+        $name = $_POST["name"];
+        $regDate_renew = $_POST["regDate_renew"];
+        $receiptNo_renew = $_POST["receiptNo_renew"];
+
+        $data = renewMembership($name, $regDate_renew, $receiptNo_renew);
+        echo json_encode($data);    
+    }
+
+    if($type == 'get_id') { 
+        $data = getMaxID();
+        echo $data;    
     }
 
 ?>

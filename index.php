@@ -29,6 +29,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="script/script.js"></script>
+    <script src="script/typeahead.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('input.typeahead-name').typeahead({
+            hint: false,
+            name: 'typeahead-name',
+            remote:'back/search.php?key=%QUERY',
+            limit : 10,
+        });
+        $('input.typeahead-id').typeahead({
+            hint: false,
+            name: 'typeahead-id',
+            remote:'back/searchid.php?id=%QUERY',
+            limit : 10,
+        });
+      });
+    </script>
     
 </head>
 
@@ -135,7 +152,15 @@
                         <option value="foreign">Foreign</option>
                     </select>
                 </div>   
-            </div>        
+            </div>  
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Date of Registration</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="date" id="regDateText" onchange="update_memNo()">
+                </div>   
+            </div>       
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Receipt Number</p>
@@ -144,14 +169,6 @@
                     <input type="number" id="receiptNoText">
                 </div>   
             </div>
-            <div class="w3-row w3-container" >
-                <div class="w3-col w3-container" style="width:20%">
-                    <p class="label-1">Date of Registration</p>
-                </div>
-                <div class="w3-col w3-container" style="width:50%">
-                    <input type="date" id="regDateText" onchange="update_memNo()">
-                </div>   
-            </div> 
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Membership Number</p>
@@ -223,6 +240,45 @@
 <!--Renew Membership modal-->
         <div id="renewMembershipModal" class="w3-container">
             <h2>Enter member ID or name:</h2>
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Name</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="text" id="nameText_renew" name="typeahead-name" class="typeahead-name tt-query" autocomplete="off" spellcheck="false">
+                </div>   
+            </div> 
+            <div class="w3-row w3-container" style="display:none">
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Membership Number</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="text" id="memberIdText_renew" name="typeahead-id" class="typeahead-id tt-query" autocomplete="off" spellcheck="false">
+                </div>   
+            </div> 
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Date of Renewal</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="date" id="regDateText_renew">
+                </div>   
+            </div>       
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Receipt Number</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="number" id="receiptNoText_renew">
+                </div>   
+            </div>
+            <div class="w3-container" style="width: 100%; height: 10px; margin-top: 20px"></div>
+
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:65%">
+                    <button id="submitBtn" style="float:right" onclick="renewMembership()">RENEW</button>  
+                </div>   
+            </div> 
         </div>                
 
         <footer class="w3-container">
