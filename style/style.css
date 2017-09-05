@@ -1,0 +1,18 @@
+#nicText {
+  padding-left: 4px !important;
+  letter-spacing: 16px;
+  border: 0;
+  background-image: linear-gradient(to left, black 40%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 26px 1px;
+  background-repeat: repeat-x;
+  background-position-x: 39px;
+  width: 250px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

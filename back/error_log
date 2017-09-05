@@ -1,0 +1,24 @@
+[02-Jul-2017 05:52:13 America/Chicago] PHP Warning:  require(mail_server.php): failed to open stream: No such file or directory in /home/bcssl/public_html/admin/back/dbaccess.php on line 4
+[02-Jul-2017 05:52:13 America/Chicago] PHP Warning:  require(mail_server.php): failed to open stream: No such file or directory in /home/bcssl/public_html/admin/back/dbaccess.php on line 4
+[02-Jul-2017 05:52:13 America/Chicago] PHP Fatal error:  require(): Failed opening required 'mail_server.php' (include_path='.:/opt/php54/lib/php') in /home/bcssl/public_html/admin/back/dbaccess.php on line 4
+[02-Jul-2017 05:52:55 America/Chicago] PHP Warning:  require(mail_server.php): failed to open stream: No such file or directory in /home/bcssl/public_html/admin/back/dbaccess.php on line 4
+[02-Jul-2017 05:52:55 America/Chicago] PHP Warning:  require(mail_server.php): failed to open stream: No such file or directory in /home/bcssl/public_html/admin/back/dbaccess.php on line 4
+[02-Jul-2017 05:52:55 America/Chicago] PHP Fatal error:  require(): Failed opening required 'mail_server.php' (include_path='.:/opt/php54/lib/php') in /home/bcssl/public_html/admin/back/dbaccess.php on line 4
+[02-Jul-2017 05:54:12 America/Chicago] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'bcssl_dba'@'ns211.websitewelcome.com' (using password: YES) in /home/bcssl/public_html/admin/back/dbconn.php on line 5
+[02-Jul-2017 05:54:12 America/Chicago] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssl/public_html/admin/back/dbaccess.php on line 29
+[02-Jul-2017 06:03:29 America/Chicago] PHP Warning:  mysqli_stmt_bind_param(): Number of elements in type definition string doesn't match number of bind variables in /home/bcssl/public_html/admin/back/dbaccess.php on line 30
+[25-Aug-2017 06:32:01 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'butterflycssl@gmail.com'@'localhost' (using password: YES) in /home/bcssllk/public_html/admin/back/dbconn.php on line 5
+[25-Aug-2017 06:32:01 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 29
+[25-Aug-2017 06:32:01 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 44
+[25-Aug-2017 06:32:03 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'butterflycssl@gmail.com'@'localhost' (using password: YES) in /home/bcssllk/public_html/admin/back/dbconn.php on line 5
+[25-Aug-2017 06:32:03 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 29
+[25-Aug-2017 06:32:03 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 44
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'butterflycssl@gmail.com'@'localhost' (using password: YES) in /home/bcssllk/public_html/admin/back/dbconn.php on line 5
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 29
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 44
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'butterflycssl@gmail.com'@'localhost' (using password: YES) in /home/bcssllk/public_html/admin/back/dbconn.php on line 5
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 29
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 44
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'butterflycssl@gmail.com'@'localhost' (using password: YES) in /home/bcssllk/public_html/admin/back/dbconn.php on line 5
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 29
+[25-Aug-2017 06:32:04 America/New_York] PHP Warning:  mysqli_prepare() expects parameter 1 to be mysqli, boolean given in /home/bcssllk/public_html/admin/back/dbaccess.php on line 44
