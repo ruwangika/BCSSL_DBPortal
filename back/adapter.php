@@ -36,9 +36,10 @@
     if($type == 'renew_membership') {
         $name = $_POST["name"];
         $regDate_renew = $_POST["regDate_renew"];
+        $category_renew = $_POST["category_renew"];
         $receiptNo_renew = $_POST["receiptNo_renew"];
 
-        $data = renewMembership($name, $regDate_renew, $receiptNo_renew);
+        $data = renewMembership($name, $regDate_renew, $category_renew, $receiptNo_renew);
         echo json_encode($data);    
     }
 

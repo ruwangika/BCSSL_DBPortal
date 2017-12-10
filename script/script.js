@@ -146,6 +146,7 @@ function addMember(){
 function renewMembership() {
     var name = document.getElementById("nameText_renew").value;
     var regDate_renew = document.getElementById("regDateText_renew").value;
+    var category_renew = document.getElementById("categoryCombo_renew").value;
     var receiptNo_renew = document.getElementById("receiptNoText_renew").value;
 
     $.ajax({
@@ -155,6 +156,7 @@ function renewMembership() {
             r_type: 'renew_membership',
             name: name, 
             regDate_renew: regDate_renew,
+            category_renew: category_renew,
             receiptNo_renew: receiptNo_renew
         },
         dataType: "text",

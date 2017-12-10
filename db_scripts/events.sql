@@ -1,0 +1,12 @@
+DELIMITER $$
+
+CREATE 
+	EVENT `update_status` 
+	ON SCHEDULE EVERY 1 DAY STARTS '2017-12-01 00:00:00' 
+	DO BEGIN
+	
+    CALL setStatus();
+	    
+	END $$
+
+DELIMITER ;

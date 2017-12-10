@@ -23,6 +23,58 @@ CREATE TABLE members_tab(
   PRIMARY KEY(ID)
 );
 
+-- Table to queue emails
+DROP TABLE IF EXISTS
+  email_queue_tab;
+
+CREATE TABLE email_queue_tab(
+  ID INT NOT NULL,
+  msg_id ENUM (
+    'welcome',
+    'expiry',
+    'expiry_warning',
+    'renewal',
+    'suspended'
+  ),
+  msg_from VARCHAR(128) NOT NULL DEFAULT 'butterflycssl@gmail.com',
+  msg_to VARCHAR(128) NOT NULL,
+  msg_cc VARCHAR(128) DEFAULT NULL,
+  msg_bcc VARCHAR(128) DEFAULT NULL,
+  msg_subject VARCHAR(256) DEFAULT 'BCSSL',
+  msg_body LONGTEXT DEFAULT NULL,
+  date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  date_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  msg_status ENUM (
+    'queued',
+    'sent',
+    'failed'
+  ),
+  email_sent bit(1) DEFAULT b'0',
+  send_tried int(11) DEFAULT '0',
+  send_result text,
+  PRIMARY KEY (ID),
+  UNIQUE KEY ID_UNIQUE (ID)
+);
+
+-- Table for email texts
+DROP TABLE IF EXISTS
+  email_text_tab;
+
+CREATE TABLE email_text_tab(
+  ID INT NOT NULL,
+  email_subject ENUM (
+    'Welcome to BCSSL!',
+    'BCSSL Membership Expiry Notice',
+    'Renew Your BCSSL Membership',
+    'BCSSL Membership Suspended'
+  ),
+  email_text LONGTEXT,
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO email_text_tab(ID, email_subject, email_text)
+VALUES (1, 'Welcome to BCSSL!', 'Welcome to Butterfly Conservation Society of Sri Lanka!');
+
 -- Table for admin details
 -- DROP TABLE IF EXISTS
 --   admin_tab;
@@ -37,6 +89,7 @@ CREATE TABLE members_tab(
 --   CONSTRAINT fk_admin_name FOREIGN KEY(admin_name) REFERENCES members_tab(member_name) ON DELETE CASCADE ON UPDATE CASCADE,
 --   CONSTRAINT fk_email FOREIGN KEY(email) REFERENCES members_tab(email) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
+
 
 -- View for basic member details
 DROP VIEW IF EXISTS

@@ -239,7 +239,7 @@
 
 <!--Renew Membership modal-->
         <div id="renewMembershipModal" class="w3-container">
-            <h2>Enter member ID or name:</h2>
+            <h2>Enter member name:</h2>
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Name</p>
@@ -263,7 +263,20 @@
                 <div class="w3-col w3-container" style="width:50%">
                     <input type="date" id="regDateText_renew">
                 </div>   
-            </div>       
+            </div> 
+            <div class="w3-row w3-container">
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Membership Category</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                <select id="categoryCombo_renew" class="combo-1">
+                    <option value="general_1y" selected>General - 1 year</option>
+                    <option value="general_5y">General - 5 year</option>
+                    <option value="school">School</option>
+                    <option value="foreign">Foreign</option>
+                </select>
+            </div>   
+            </div>      
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Receipt Number</p>
