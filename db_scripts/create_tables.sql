@@ -25,9 +25,9 @@ CREATE TABLE members_tab(
 
 -- Table to queue emails
 DROP TABLE IF EXISTS
-  email_queue_tab;
+  email_queue_tab1;
 
-CREATE TABLE email_queue_tab(
+CREATE TABLE email_queue_tab1(
   ID INT NOT NULL,
   msg_id ENUM (
     'welcome',
@@ -56,24 +56,52 @@ CREATE TABLE email_queue_tab(
   UNIQUE KEY ID_UNIQUE (ID)
 );
 
+-- Table to queue emails - new
+DROP TABLE IF EXISTS
+  email_queue_tab;
+
+CREATE TABLE email_queue_tab(
+  ID INT(5) NOT NULL AUTO INCREMENT,
+  msg_id ENUM (
+    'welcome',
+    'expiry',
+    'expiry_warning',
+    'renewal',
+    'suspended'
+  ),
+  to_address VARCHAR(256),
+  date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  date_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  msg_status ENUM (
+    'queued',
+    'sent',
+    'failed'
+  ) DEFAULT 'queued',
+  PRIMARY KEY (ID)
+);
+
 -- Table for email texts
 DROP TABLE IF EXISTS
   email_text_tab;
 
 CREATE TABLE email_text_tab(
   ID INT NOT NULL,
-  email_subject ENUM (
-    'Welcome to BCSSL!',
-    'BCSSL Membership Expiry Notice',
-    'Renew Your BCSSL Membership',
-    'BCSSL Membership Suspended'
-  ),
+  email_code VARCHAR(100),
+  email_subject VARCHAR(100),
   email_text LONGTEXT,
   PRIMARY KEY (ID)
 );
 
+
+
 INSERT INTO email_text_tab(ID, email_subject, email_text)
-VALUES (1, 'Welcome to BCSSL!', 'Welcome to Butterfly Conservation Society of Sri Lanka!');
+VALUES 
+  (1, 'welcome', 'Welcome to BCSSL!', 'Welcome to Butterfly Conservation Society of Sri Lanka!'),
+  (2, 'expiry', 'BCSSL Membership Expiry Notice', 'Your BCSSL membership has expired.'),
+  (3, 'expiry_warning', 'Renew Your BCSSL Membership', 'Renew your BCSSL membership today.'),
+  (4, 'suspended', 'BCSSL Membership Suspended', 'BCSSL membership suspended.'),
+  (5, 'renewed', 'Membership Renewed', 'BCSSL membership renewed successfully.')
+;
 
 -- Table for admin details
 -- DROP TABLE IF EXISTS

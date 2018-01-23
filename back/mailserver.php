@@ -9,4 +9,8 @@
         $msg = 'This is a test email.';
         mail($to, $subject, $msg, $from);
     }
+
+    function sendMail() {
+        
+    }
 ?>
