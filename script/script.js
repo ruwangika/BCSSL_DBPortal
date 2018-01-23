@@ -135,7 +135,7 @@ function addMember(){
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            console.log("Add member error.")
+            console.log("Add member error.");
             console.log(XMLHttpRequest);
             window.alert("Error!");
         }    
@@ -173,7 +173,7 @@ function renewMembership() {
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            console.log("Renew membership error.")
+            console.log("Renew membership error.");
             console.log(XMLHttpRequest);
             window.alert("Error!");
         }    
@@ -205,7 +205,7 @@ function update_memNo() {
     var category = $("#categoryCombo").val();
     var regDate = $("#regDateText").val();
 
-    if (category == "" || regDate == "") return;
+    if (category === "" || regDate === "") return;
 
     var cat_str = category.slice(0, 1).toUpperCase();
     var date_str = regDate.slice(2, 4) + regDate.slice(5, 7);
@@ -224,7 +224,7 @@ function update_memNo() {
 
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            console.log("Can't get ID!")
+            console.log("Can't get ID!");
             console.log(XMLHttpRequest);
         }    
     });

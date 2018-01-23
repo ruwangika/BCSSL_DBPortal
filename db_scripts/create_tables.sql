@@ -24,44 +24,44 @@ CREATE TABLE `members_tab` (
 );
 
 -- Table to queue emails
-DROP TABLE IF EXISTS
-  email_queue_tab1;
+-- DROP TABLE IF EXISTS
+--   email_queue_tab1;
 
-CREATE TABLE email_queue_tab1(
-  ID INT NOT NULL,
-  msg_id ENUM (
-    'welcome',
-    'expiry',
-    'expiry_warning',
-    'renewal',
-    'suspended'
-  ),
-  msg_from VARCHAR(128) NOT NULL DEFAULT 'butterflycssl@gmail.com',
-  msg_to VARCHAR(128) NOT NULL,
-  msg_cc VARCHAR(128) DEFAULT NULL,
-  msg_bcc VARCHAR(128) DEFAULT NULL,
-  msg_subject VARCHAR(256) DEFAULT 'BCSSL',
-  msg_body LONGTEXT DEFAULT NULL,
-  date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  date_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  msg_status ENUM (
-    'queued',
-    'sent',
-    'failed'
-  ),
-  email_sent bit(1) DEFAULT b'0',
-  send_tried int(11) DEFAULT '0',
-  send_result text,
-  PRIMARY KEY (ID),
-  UNIQUE KEY ID_UNIQUE (ID)
-);
+-- CREATE TABLE email_queue_tab1(
+--   ID INT NOT NULL,
+--   msg_id ENUM (
+--     'welcome',
+--     'expiry',
+--     'expiry_warning',
+--     'renewal',
+--     'suspended'
+--   ),
+--   msg_from VARCHAR(128) NOT NULL DEFAULT 'butterflycssl@gmail.com',
+--   msg_to VARCHAR(128) NOT NULL,
+--   msg_cc VARCHAR(128) DEFAULT NULL,
+--   msg_bcc VARCHAR(128) DEFAULT NULL,
+--   msg_subject VARCHAR(256) DEFAULT 'BCSSL',
+--   msg_body LONGTEXT DEFAULT NULL,
+--   date_added DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   date_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   msg_status ENUM (
+--     'queued',
+--     'sent',
+--     'failed'
+--   ),
+--   email_sent bit(1) DEFAULT b'0',
+--   send_tried int(11) DEFAULT '0',
+--   send_result text,
+--   PRIMARY KEY (ID),
+--   UNIQUE KEY ID_UNIQUE (ID)
+-- );
 
 -- Table to queue emails - new
 DROP TABLE IF EXISTS
   email_queue_tab;
 
 CREATE TABLE email_queue_tab(
-  ID INT(5) NOT NULL AUTO INCREMENT,
+  ID INT(5) NOT NULL AUTO_INCREMENT,
   msg_id ENUM (
     'welcome',
     'expiry',
@@ -94,7 +94,7 @@ CREATE TABLE email_text_tab(
 
 
 
-INSERT INTO email_text_tab(ID, email_subject, email_text)
+INSERT INTO email_text_tab(ID, email_code, email_subject, email_text)
 VALUES 
   (1, 'welcome', 'Welcome to BCSSL!', 'Welcome to Butterfly Conservation Society of Sri Lanka!'),
   (2, 'expiry', 'BCSSL Membership Expiry Notice', 'Your BCSSL membership has expired.'),
@@ -133,15 +133,15 @@ FROM
   members_tab;
 
 -- View for admin details
-DROP VIEW IF EXISTS
-  admin_details;
+-- DROP VIEW IF EXISTS
+--   admin_details;
 
-CREATE VIEW admin_details AS
-SELECT
-  ID,
-  member_name,
-  email
-FROM
-  members_tab
-WHERE 
-  is_admin > 0;  
+-- CREATE VIEW admin_details AS
+-- SELECT
+--   ID,
+--   member_name,
+--   email
+-- FROM
+--   members_tab
+-- WHERE 
+--   is_admin > 0;  

@@ -109,8 +109,9 @@
                 mysqli_stmt_execute($stmt);            
                 mysqli_stmt_close($stmt);
             }
-            // queueEmail($id, 'renewal');
-            sendMail("gruwangika@yahoo.com", "renewal");
+            $address = getEmail($id);
+            queueEmail($address, 'renewal');
+            sendMail("ruwangikagunawardana@gmail.com", "renewal");
         }
     }
 
@@ -158,7 +159,6 @@
 
     function getEmail($ID) {
         $con = getConnection();
-        $id = 0;
         $sql = "SELECT email FROM members_tab WHERE ID = ?;";
         if ($stmt = mysqli_prepare($con, $sql)) {
             mysqli_stmt_bind_param($stmt, "i", $ID);
