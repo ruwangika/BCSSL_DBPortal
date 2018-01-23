@@ -102,14 +102,15 @@
         if ($id == 0) {
             return "notfound";
         } else {
-            $status = 1;
+            $status = 'active';
             $sql = "UPDATE members_tab SET date_renewed = ?, category = ?, receiptNo_renewed = ?, member_status = ? WHERE member_name = ?;";
             if ($stmt = mysqli_prepare($con, $sql)) {
-                mysqli_stmt_bind_param($stmt, "sssis", $regDate_renew, $category_renew, $receiptNo_renew, $status, $name);
+                mysqli_stmt_bind_param($stmt, "sssss", $regDate_renew, $category_renew, $receiptNo_renew, $status, $name);
                 mysqli_stmt_execute($stmt);            
                 mysqli_stmt_close($stmt);
             }
-            queueEmail($id, 'renewal');
+            // queueEmail($id, 'renewal');
+            sendMail("gruwangika@yahoo.com", "renewal");
         }
     }
 

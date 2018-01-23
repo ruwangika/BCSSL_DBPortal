@@ -9,4 +9,20 @@
         $msg = 'This is a test email.';
         mail($to, $subject, $msg, $from);
     }
+
+    function sendMail($address, $reason) {
+        $to = $address;
+        $subject = getSubject($reason);
+        $body = getMsg($reason);
+
+        mail($to, $subject, $body);
+    }
+
+    function getSubject($reason) {
+        return 'Test';
+    }
+
+    function getMsg($reason) {
+        return 'This is a test email.';
+    }
 ?>

@@ -2,25 +2,25 @@
 DROP TABLE IF EXISTS
   members_tab;
 
-CREATE TABLE members_tab(
-  ID INT NOT NULL,
-  member_name VARCHAR(60) NOT NULL,
-  NIC VARCHAR(20),
-  email VARCHAR(150),
-  DoB DATE,
-  address VARCHAR(60),
-  contactNo VARCHAR(20),
-  category ENUM(
-    'school',
-    'local_1y',
-    'local_5y',
-    'foreign'
-  ),
-  receiptNo INT UNIQUE,
-  dateOfReg DATE,
-  member_status ENUM('1', '0', '-1'),
-  is_admin TINYINT(1),
-  PRIMARY KEY(ID)
+CREATE TABLE `members_tab` (
+ `ID` int(5) NOT NULL AUTO_INCREMENT,
+ `member_name` varchar(60) DEFAULT NULL,
+ `DoB` date DEFAULT NULL,
+ `gender` enum('M','F') DEFAULT NULL,
+ `address` varchar(64) DEFAULT NULL,
+ `NIC` varchar(10) DEFAULT NULL,
+ `contactNo` varchar(16) DEFAULT NULL,
+ `contactNo_extra` varchar(16) DEFAULT NULL,
+ `email` varchar(41) DEFAULT NULL,
+ `membership_no` varchar(41) DEFAULT NULL,
+ `category` enum('general_1y','general_5y','school','foreign') DEFAULT NULL,
+ `dateOfReg` date DEFAULT NULL,
+ `receiptNo` int(11) DEFAULT NULL,
+ `date_renewed` date DEFAULT NULL,
+ `receiptNo_renewed` int(11) DEFAULT NULL,
+ `member_status` enum('active','expired_noticed','expired_warned','suspended') NOT NULL DEFAULT 'active',
+ UNIQUE KEY `ID` (`ID`),
+ UNIQUE KEY `NIC` (`NIC`)
 );
 
 -- Table to queue emails
