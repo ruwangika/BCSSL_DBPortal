@@ -114,45 +114,61 @@
         }
     }
 
-    function queueEmail($id, $msg_id) {
-        switch ($msg_id) {
-            case "welcome":
-                echo "welcome";
-                break;
-            case "expiry":
-                echo "expiry";
-                break;
-            case "expiry_warning":
-                echo "expiry_warning";
-                break;
-            case "renewal":
-                echo "renewal";
-                $subject = "Renew Your BCSSL Membership";
-                $body = "Renew your BCSSL membership today.";
-                break;
-            case "suspended":
-                echo "suspended";
-                break;            
-        }
+    function queueEmail1($id, $code) {
+        // switch ($code) {
+        //     case "welcome":
+        //         echo "welcome";
+        //         break;
+        //     case "expiry":
+        //         echo "expiry";
+        //         break;
+        //     case "expiry_warning":
+        //         echo "expiry_warning";
+        //         break;
+        //     case "renewal":
+        //         echo "renewal";
+        //         $subject = "Renew Your BCSSL Membership";
+        //         $body = "Renew your BCSSL membership today.";
+        //         break;
+        //     case "suspended":
+        //         echo "suspended";
+        //         break;            
+        // }
 
         $con = getConnection();
         // Get email address
-        $address = 0;
-        $sql_getAddress = "SELECT email FROM members_tab WHERE ID = ?;";
-        if ($stmt = mysqli_prepare($con, $sql_getAddress)) {
-            mysqli_stmt_bind_param($stmt, "i", $id);
-            mysqli_stmt_execute($stmt); 
-            mysqli_stmt_bind_result($stmt, $result);
-            while(mysqli_stmt_fetch($stmt)) {
-                $address = $result;
-            }
-            mysqli_stmt_close($stmt);
-        }
+        $address = getEmail($ID);
         $sql_insert = "INSERT INTO email_queue_tab (msg_id, msg_to, msg_subject, msg_body) VALUES (?, ?, ?, ?);";
         if ($stmt = mysqli_prepare($con, $sql_insert)) {
             mysqli_stmt_bind_param($stmt, "ssss", $msg_id, $address, $subject, $body);
             mysqli_stmt_execute($stmt);        
             mysqli_stmt_close($stmt);
         }
+    }
+
+    function queueEmail($address, $code) {
+        $con = getConnection();
+        $sql_insert = "INSERT INTO email_queue_tab (msg_id, to_address) VALUES (?, ?);";
+        if ($stmt = mysqli_prepare($con, $sql_insert)) {
+            mysqli_stmt_bind_param($stmt, "ss", $code, $address);
+            mysqli_stmt_execute($stmt);        
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    function getEmail($ID) {
+        $con = getConnection();
+        $id = 0;
+        $sql = "SELECT email FROM members_tab WHERE ID = ?;";
+        if ($stmt = mysqli_prepare($con, $sql)) {
+            mysqli_stmt_bind_param($stmt, "i", $ID);
+            mysqli_stmt_execute($stmt); 
+            mysqli_stmt_bind_result($stmt, $result);
+            while(mysqli_stmt_fetch($stmt)) {
+                $email = $result;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        return $email;
     }
 ?>
