@@ -11,20 +11,21 @@
         mail($to, $subject, $msg, $headers);
     }
 
-    function sendMail($address, $reason) {
+    function sendMail($code, $address) {
         $to = $address;
-        $subject = getSubject($reason);
-        $body = getMsg($reason);
+        $subject = getSubject($code);
+        $body = getMsg($code);
         $headers = "From: butterflycssl@gmail.com\r\n";
 
+        echo "code: ".$code.", address: ".$address.": ";
         mail($to, $subject, $body, $headers);
     }
 
-    function getSubject($reason) {
+    function getSubject($code) {
         return 'Test';
     }
 
-    function getMsg($reason) {
+    function getMsg($code) {
         return 'This is a test email.';
     }
 ?>

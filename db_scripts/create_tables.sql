@@ -29,7 +29,7 @@ CREATE TABLE `members_tab` (
 
 -- CREATE TABLE email_queue_tab1(
 --   ID INT NOT NULL,
---   msg_id ENUM (
+--   msg_code ENUM (
 --     'welcome',
 --     'expiry',
 --     'expiry_warning',
@@ -62,7 +62,7 @@ DROP TABLE IF EXISTS
 
 CREATE TABLE email_queue_tab(
   ID INT(5) NOT NULL AUTO_INCREMENT,
-  msg_id ENUM (
+  msg_code ENUM (
     'welcome',
     'expiry',
     'expiry_warning',

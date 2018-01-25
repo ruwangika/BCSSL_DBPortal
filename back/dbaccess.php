@@ -51,6 +51,8 @@
             }
 
             sendMembershipMail($email);
+            
+            closeConnection($con);
         }
     }
 
@@ -66,6 +68,7 @@
             }              
             mysqli_stmt_close($stmt);
         }
+        closeConnection($con);
     }
 
     function checkNIC($nic) {
@@ -80,6 +83,7 @@
             } 
             mysqli_stmt_close($stmt);
         }
+        closeConnection($con);
     }
 
     function renewMembership($name, $regDate_renew, $category_renew, $receiptNo_renew) {
@@ -111,8 +115,9 @@
             }
             $address = getEmail($id);
             queueEmail($address, 'renewal');
-            sendMail("ruwangikagunawardana@gmail.com", "renewal");
+            // sendMail("renewal", "ruwangikagunawardana@gmail.com");
         }
+        closeConnection($con);
     }
 
     function queueEmail1($id, $code) {
@@ -149,7 +154,7 @@
 
     function queueEmail($address, $code) {
         $con = getConnection();
-        $sql_insert = "INSERT INTO email_queue_tab (msg_id, to_address) VALUES (?, ?);";
+        $sql_insert = "INSERT INTO email_queue_tab (msg_code, to_address) VALUES (?, ?);";
         if ($stmt = mysqli_prepare($con, $sql_insert)) {
             mysqli_stmt_bind_param($stmt, "ss", $code, $address);
             mysqli_stmt_execute($stmt);        
