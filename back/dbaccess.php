@@ -3,6 +3,7 @@
     require 'dbconn.php';
     require 'mailserver.php';
 
+    // Function to get the member names as an array
     function getNameList(){
         $con = getConnection();
         $sql = "SELECT member_name FROM members_tab";
@@ -21,6 +22,7 @@
         }  
     }
 
+    // Function to add new member to db
     function addMemberToDb($memberId, $name, $email, $address, $nic, $dob, $gender, $contactNo, $contactNo_extra, $category, $receiptNo, $regDate){
         if ($memberId=="" || $name=="") {
             return "nulldata";
@@ -42,7 +44,6 @@
             return "exists";
         } else {
             // Add data
-            //$status = 1;
             $sql = "INSERT INTO members_tab (membership_no, member_name, email, address, NIC, DoB, gender, contactNo, contactNo_extra, category, receiptNo, dateOfReg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             if ($stmt = mysqli_prepare($con, $sql)) {
                 mysqli_stmt_bind_param($stmt, "ssssssssssis", $memberId, $name, $email, $address, $nic, $dob, $gender, $contactNo, $contactNo_extra, $category, $receiptNo, $regDate);
@@ -50,12 +51,13 @@
                 mysqli_stmt_close($stmt);
             }
 
-            sendMembershipMail($email);
+            queueEmail($email, 'welcome');
             
             closeConnection($con);
         }
     }
 
+    // Function to get the number of members (i.e. the maximum ID)
     function getMaxID() {
         $con = getConnection();
         $sql = "SELECT MAX(ID) FROM members_tab;";
@@ -71,6 +73,7 @@
         closeConnection($con);
     }
 
+    // Function to check if NIC already exists
     function checkNIC($nic) {
         $con = getConnection();
         $sql = "SELECT ID FROM members_tab WHERE NIC = ?;";
@@ -106,7 +109,7 @@
         if ($id == 0) {
             return "notfound";
         } else {
-            $status = 'active';
+            $status = '1';
             $sql = "UPDATE members_tab SET date_renewed = ?, category = ?, receiptNo_renewed = ?, member_status = ? WHERE member_name = ?;";
             if ($stmt = mysqli_prepare($con, $sql)) {
                 mysqli_stmt_bind_param($stmt, "sssss", $regDate_renew, $category_renew, $receiptNo_renew, $status, $name);
@@ -115,43 +118,11 @@
             }
             $address = getEmail($id);
             queueEmail($address, 'renewal');
-            // sendMail("renewal", "ruwangikagunawardana@gmail.com");
         }
         closeConnection($con);
     }
 
-    function queueEmail1($id, $code) {
-        // switch ($code) {
-        //     case "welcome":
-        //         echo "welcome";
-        //         break;
-        //     case "expiry":
-        //         echo "expiry";
-        //         break;
-        //     case "expiry_warning":
-        //         echo "expiry_warning";
-        //         break;
-        //     case "renewal":
-        //         echo "renewal";
-        //         $subject = "Renew Your BCSSL Membership";
-        //         $body = "Renew your BCSSL membership today.";
-        //         break;
-        //     case "suspended":
-        //         echo "suspended";
-        //         break;            
-        // }
-
-        $con = getConnection();
-        // Get email address
-        $address = getEmail($ID);
-        $sql_insert = "INSERT INTO email_queue_tab (msg_id, msg_to, msg_subject, msg_body) VALUES (?, ?, ?, ?);";
-        if ($stmt = mysqli_prepare($con, $sql_insert)) {
-            mysqli_stmt_bind_param($stmt, "ssss", $msg_id, $address, $subject, $body);
-            mysqli_stmt_execute($stmt);        
-            mysqli_stmt_close($stmt);
-        }
-    }
-
+    // Function to queue emails in table
     function queueEmail($address, $code) {
         $con = getConnection();
         $sql_insert = "INSERT INTO email_queue_tab (msg_code, to_address) VALUES (?, ?);";
@@ -162,9 +133,11 @@
         }
     }
 
+    // Function to get email address for a given ID
     function getEmail($ID) {
         $con = getConnection();
         $sql = "SELECT email FROM members_tab WHERE ID = ?;";
+        $email = "";
         if ($stmt = mysqli_prepare($con, $sql)) {
             mysqli_stmt_bind_param($stmt, "i", $ID);
             mysqli_stmt_execute($stmt); 
@@ -174,6 +147,44 @@
             }
             mysqli_stmt_close($stmt);
         }
+        closeConnection($con);
         return $email;
+    }
+
+    
+    // Function to get email subject for a given email ID
+    function getSubject($code) {
+        $con = getConnection();
+        $sql = "SELECT email_subject FROM members_tab WHERE email_code = ?;";
+        $subject = "";
+        if ($stmt = mysqli_prepare($con, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $code);
+            mysqli_stmt_execute($stmt); 
+            mysqli_stmt_bind_result($stmt, $result);
+            while(mysqli_stmt_fetch($stmt)) {
+                $subject = $result;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        closeConnection($con);
+        return $subject;
+    }
+
+    // Function to get email text for a given email ID
+    function getMsg($code) {
+        $con = getConnection();
+        $sql = "SELECT email_text FROM members_tab WHERE email_code = ?;";
+        $text = "";
+        if ($stmt = mysqli_prepare($con, $sql)) {
+            mysqli_stmt_bind_param($stmt, "s", $code);
+            mysqli_stmt_execute($stmt); 
+            mysqli_stmt_bind_result($stmt, $result);
+            while(mysqli_stmt_fetch($stmt)) {
+                $text = $result;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        closeConnection($con);
+        return $text;
     }
 ?>

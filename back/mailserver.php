@@ -1,5 +1,7 @@
 <?php
 
+    require 'dbaccess.php';
+
     function sendMembershipMail($email) {
         // $msg = "This is a test email.";
         // mail($email,"My subject",$msg);
@@ -7,7 +9,7 @@
         $to = 'ruwangikagunawardana@gmail.com';
         $subject = 'Test';
         $msg = 'This is a test email.';
-        $headers = "From: butterflycssl@gmail.com\r\n";
+        $headers = 'From: butterflycssl@gmail.com\r\n';
         mail($to, $subject, $msg, $headers);
     }
 
@@ -15,17 +17,11 @@
         $to = $address;
         $subject = getSubject($code);
         $body = getMsg($code);
-        $headers = "From: butterflycssl@gmail.com\r\n";
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: Butterfly Conservation Society<butterflycssl@gmail.com>'."\r\n";
 
-        echo "code: ".$code.", address: ".$address.": ";
+        echo 'code: '.$code.', address: '.$address.': ';
         mail($to, $subject, $body, $headers);
-    }
-
-    function getSubject($code) {
-        return 'Test';
-    }
-
-    function getMsg($code) {
-        return 'This is a test email.';
     }
 ?>
