@@ -22,8 +22,9 @@
                 $msg_id = $row["ID"];
                 $msg_code = $row["msg_code"];
                 $email_address = $row["to_address"];
+                // $email_address = 'ruwangikagunawardana@gmail.com';
                 sendMail($msg_code, $email_address);
-                $status = "sent";
+                $status = 'sent';
                 updateMsgStatus($con, $msg_id, $status);
             }
             closeConnection($con);

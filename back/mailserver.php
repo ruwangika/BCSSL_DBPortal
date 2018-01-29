@@ -14,7 +14,8 @@
     }
 
     function sendMail($code, $address) {
-        $to = $address;
+        // $to = $address;
+        $to = 'ruwangikagunawardana@gmail.com';
         $subject = getSubject($code);
         $body = getMsg($code);
         $headers  = 'MIME-Version: 1.0' . "\r\n";

@@ -50,32 +50,29 @@ CREATE FUNCTION getMemberStatus(
 ) RETURNS VARCHAR(5) 
 
 BEGIN
-    DECLARE member_status VARCHAR(5) ;
+    DECLARE current_member_status VARCHAR(5) ;
     DECLARE expiry_status VARCHAR(30) ;
     DECLARE email_address VARCHAR(50) ;
+    DECLARE RESULT INT(5);
 
-    SET member_status = SELECT member_status FROM members_tab WHERE ID = memberID ;
+    SET current_member_status = (SELECT member_status FROM members_tab WHERE ID = memberID) ;
     SET expiry_status = getExpiryStatus(dateOfReg, date_renewed, category) ;
-    SET email_address = SELECT email FROM members_tab WHERE ID = memberID ;
+    SET email_address = (SELECT email FROM members_tab WHERE ID = memberID) ;
 
-    CASE 
-        WHEN expiry_status = "none"
-        THEN 
-            SET member_status = member_status;
-        WHEN expiry_status = "1week_to_expire"
-        THEN 
-            queueEmail(email_address, "expiry_warning");
-            SET member_status = '1' ;
-        WHEN expiry_status = "expires_today"
-        THEN 
-            queueEmail(email_address, "expiry_notice");
-            SET member_status = '0' ;
-        WHEN expiry_status = "expired_3months"
-        THEN 
-            queueEmail(email_address, "suspended_notice");
-            SET member_status = '-1' ;
-        
-    RETURN member_status ;
+    IF (expiry_status = "none") THEN 
+        RETURN current_member_status;
+    ELSEIF (expiry_status = "1week_to_expire") THEN 
+        SELECT queueEmail(email_address, "expiry_warning") INTO RESULT;
+        SET current_member_status = '1' ;
+    ELSEIF (expiry_status = "expires_today") THEN 
+        SELECT queueEmail(email_address, "expiry_notice") INTO RESULT;
+        SET current_member_status = '0' ;
+    ELSEIF (expiry_status = "expired_3months") THEN 
+        SELECT queueEmail(email_address, "suspended_notice") INTO RESULT;
+        SET current_member_status = '-1' ;
+    END IF;
+
+    RETURN current_member_status ;
 END $$
 DELIMITER ;
 
@@ -116,12 +113,29 @@ BEGIN
         SET expiry_status = "1week_to_expire";
     ELSEIF (date_diff = period) THEN
         SET expiry_status = "expires_today";
-    ELSEIF (date_diff = period + 30) THEN
+    ELSEIF (date_diff = period + 90) THEN
         SET expiry_status = "expired_3months";
     ELSE
         SET expiry_status = "none";
     END IF;
 
     RETURN expiry_status;
+END$$
+DELIMITER ;
+
+
+-- Function to queue emails
+DROP FUNCTION IF EXISTS queueEmail;
+DELIMITER $$
+CREATE FUNCTION queueEmail(
+    email_address VARCHAR(100),
+    email_code VARCHAR(30)
+) RETURNS INT(5) 
+
+BEGIN
+    INSERT INTO email_queue_tab (msg_code, to_address)
+    VALUES (email_code, email_address);
+
+    RETURN 1;
 END$$
 DELIMITER ;
