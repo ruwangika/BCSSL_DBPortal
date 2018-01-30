@@ -1,6 +1,6 @@
 <?php
 
-    require 'dbaccess.php';
+    require_once 'dbaccess.php';
 
     function sendMembershipMail($email) {
         // $msg = "This is a test email.";

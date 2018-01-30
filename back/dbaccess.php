@@ -1,7 +1,7 @@
 <?php
 
-    require 'dbconn.php';
-    require 'mailserver.php';
+    require_once 'dbconn.php';
+    require_once 'mailserver.php';
 
     // Function to get the member names as an array
     function getNameList(){
@@ -155,7 +155,7 @@
     // Function to get email subject for a given email ID
     function getSubject($code) {
         $con = getConnection();
-        $sql = "SELECT email_subject FROM members_tab WHERE email_code = ?;";
+        $sql = "SELECT email_subject FROM email_text_tab WHERE email_code = ?;";
         $subject = "";
         if ($stmt = mysqli_prepare($con, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $code);
@@ -173,7 +173,7 @@
     // Function to get email text for a given email ID
     function getMsg($code) {
         $con = getConnection();
-        $sql = "SELECT email_text FROM members_tab WHERE email_code = ?;";
+        $sql = "SELECT email_text FROM email_text_tab WHERE email_code = ?;";
         $text = "";
         if ($stmt = mysqli_prepare($con, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $code);
