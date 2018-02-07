@@ -25,10 +25,12 @@
     <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="style/w3.css">
+    <link rel="stylesheet" href="style/bootstrap-datetimepicker.min.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="script/script.js"></script>
+    <script src="script/bootstrap-datetimepicker.min.js"></script>
     <script src="script/typeahead.min.js"></script>
     <script>
       $(document).ready(function(){
@@ -83,39 +85,15 @@
             </div> 
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
-                    <p class="label-1">Email</p>
-                </div>
-                <div class="w3-col w3-container" style="width:50%">
-                    <input type="email" id="emailText">
-                </div>   
-            </div>    
-            <div class="w3-row w3-container" >
-                <div class="w3-col w3-container" style="width:20%">
-                    <p class="label-1">Address</p>
-                </div>
-                <div class="w3-col w3-container" style="width:50%">
-                    <input type="text" id="addressText">
-                </div>   
-            </div>  
-            <div class="w3-row w3-container" >
-                <div class="w3-col w3-container" style="width:20%">
-                    <p class="label-1">NIC</p>
-                </div>
-                <div class="w3-col w3-container" style="width:50%">
-                    <input id="nicText" type="text" maxlength="10" />
-                </div>   
-            </div> 
-            <div class="w3-row w3-container" >
-                <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Date of Birth</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
                     <input type="date" id="dobText">
                 </div>   
-            </div>  
+            </div>   
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
-                    <p class="label-1">Category</p>
+                    <p class="label-1">Gender</p>
                 </div>
                 <div class="w3-col w3-container" style="width:50%">
                     <select id="genderCombo" class="combo-1">
@@ -123,7 +101,23 @@
                         <option value="F">Female</option>
                     </select>
                 </div>   
-            </div>                                                  
+            </div>  
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Address</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="text" id="addressText">
+                </div>   
+            </div> 
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">NIC</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input id="nicText" type="text" maxlength="10" />
+                </div>   
+            </div>                                                
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Contact Number</p>
@@ -139,7 +133,15 @@
                 <div class="w3-col w3-container" style="width:50%">
                     <input type="number" id="contactNoExtraText" pattern="[0-9]+" maxlength="10">
                 </div>   
-            </div>   
+            </div>  
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:20%">
+                    <p class="label-1">Email</p>
+                </div>
+                <div class="w3-col w3-container" style="width:50%">
+                    <input type="email" id="emailText">
+                </div>   
+            </div>      
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:20%">
                     <p class="label-1">Category</p>

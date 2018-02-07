@@ -1,3 +1,13 @@
+// $(function() {
+//     $("#dobText").datepicker();
+
+    
+    
+//     $("#dobText").datepicker("option", "dateFormat", "yy-mm-dd");
+//     // $("#startDatePicker").datepicker("setDate", todayDate());
+// });
+
+
 function dispAlert() {
     window.alert("Done");
 }
@@ -230,6 +240,12 @@ function update_memNo() {
     });
 
 
+}
+
+function initDateTimePicker() {
+    $('.input-append').datetimepicker({
+        pickDate: false
+    });
 }
 
 // function zeroFill(number, width)
