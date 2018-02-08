@@ -142,6 +142,7 @@ function addMember(){
             } else {
                 console.log("Add member: " + status);
                 window.alert("Member added");
+                clearForm();
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -240,6 +241,10 @@ function update_memNo() {
     });
 
 
+}
+
+function clearForm() {
+    $("input[type=text], input[type=date], input[type=number], input[type=email], textarea").val("");
 }
 
 function initDateTimePicker() {
