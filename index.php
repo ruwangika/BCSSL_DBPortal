@@ -58,8 +58,8 @@
         <img src="img/logo.png" class="logo">
         <div style="width: 100%; height: 80px"></div>
         <a href="#" onclick="addMemberModalOpen()">Add Member</a>
-        <a href="#" onclick="sendMailModalOpen()">Send Email</a>
-        <a href="#" onclick="findMemberModalOpen()">Find a Member</a>
+        <a href="#" onclick="sendMailModalOpen()" style="display: none;">Send Email</a>
+        <a href="#" onclick="findMemberModalOpen()" style="display: none;">Find a Member</a>
         <a href="#" onclick="renewMembershipModalOpen()">Renew Membership</a>
     </nav>
 

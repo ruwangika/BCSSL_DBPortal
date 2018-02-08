@@ -28,11 +28,6 @@
         echo json_encode($data);    
     }
 
-    if($type == 'get_id') { 
-        $data = getMaxID();
-        echo $data;    
-    }
-
     if($type == 'renew_membership') {
         $name = $_POST["name"];
         $regDate_renew = $_POST["regDate_renew"];
