@@ -21,3 +21,4 @@ WHERE (`dateOfReg` BETWEEN '2017-02-01' AND '2017-02-28') OR (`date_renewed` BET
 -- Mar: 2017-03-18 --> 2018-03-11
 -- Apr: NA
 -- May: 
+-- June: 
