@@ -187,4 +187,28 @@
         closeConnection($con);
         return $text;
     }
+
+    function getMemberDetails($memGroup) {
+        $con = getConnection();
+        if ($memGroup == "allMem") $sql = "SELECT ID, member_name, email, contactNo, membership_no FROM members_tab";
+        if ($memGroup == "activeMem") $sql = "SELECT ID, member_name, email, contactNo, membership_no FROM members_tab WHERE member_status != '-1'";
+        $results = mysqli_query($con, $sql);
+        $nor = mysqli_num_rows($results);
+        $counter = 0;
+        if($nor != 0){
+            while ($row = mysqli_fetch_array($results,MYSQLI_ASSOC)) {
+                $data[$counter]["ID"] = $row["ID"]; 
+                $data[$counter]["name"] = $row["member_name"];
+                $data[$counter]["email"] = $row["email"]; 
+                $data[$counter]["contactNo"] = $row["contactNo"]; 
+                $data[$counter]["membershipNo"] = $row["membership_no"]; 
+                $counter++;
+            }
+            closeConnection($con);
+            return $data;
+        }else{
+            closeConnection($con);
+            return "Null Data";
+        }
+    }
 ?>

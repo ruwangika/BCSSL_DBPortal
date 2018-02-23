@@ -114,7 +114,7 @@ function addMember(){
 
    // Save data to database
     $.ajax({
-        url: "back/adapter.php",
+        url: "back/post_adapter.php",
         method: "POST",
         data: {
             r_type: 'add_member', 
@@ -161,7 +161,7 @@ function renewMembership() {
     var receiptNo_renew = document.getElementById("receiptNoText_renew").value;
 
     $.ajax({
-        url: "back/adapter.php",
+        url: "back/post_adapter.php",
         method: "POST",
         data: {
             r_type: 'renew_membership',
@@ -223,7 +223,7 @@ function update_memNo() {
     var id_str = "";
     
     $.ajax({
-        url: "back/adapter.php",
+        url: "back/post_adapter.php",
         method: "POST",
         data: {r_type: 'get_id'},
         dataType: "text",
@@ -316,3 +316,35 @@ String.prototype.lpad = function(padString, length) {
 //         limit : 10,
 //     });
 // }
+
+function fetchMemberDetails() {
+    var tableBody = document.getElementById('memberDetailTabBody');
+    $('#memberDetailTabBody').empty();
+    var memberGroup = $("#memberGroupCombo").val();
+
+    $.ajax({
+        url: "back/get_adapter.php",
+        method: "GET",
+        data: {
+            r_type: 'get_details',
+            memGroup: memberGroup
+        },
+        dataType: "json",
+        success: function(data, status) {
+            displayDataInTable(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            console.log("Can't get ID!");
+            console.log(XMLHttpRequest);
+        }    
+    });
+}
+
+function displayDataInTable(data) {
+    for (var i = 0; i < data.length; i++) {
+        var member = data[i];
+        var rowStr = '<tr><td>'+member.ID+'</td><td>'+member.name+'</td><td>'+member.email+'</td><td>'+member.contactNo+'</td><td>'+member.membershipNo+'</td></tr>';
+        var tableBody = document.getElementById('memberDetailTabBody');
+        tableBody.innerHTML += rowStr;
+    }
+}

@@ -59,7 +59,7 @@
         <div style="width: 100%; height: 80px"></div>
         <a href="#" onclick="addMemberModalOpen()">Add Member</a>
         <a href="#" onclick="sendMailModalOpen()" style="display: none;">Send Email</a>
-        <a href="#" onclick="findMemberModalOpen()" style="display: none;">Find a Member</a>
+        <a href="#" onclick="findMemberModalOpen()">Member Details</a>
         <a href="#" onclick="renewMembershipModalOpen()">Renew Membership</a>
     </nav>
 
@@ -236,7 +236,33 @@
 
 <!--Find a Member modal-->
         <div id="findMemberModal" class="w3-container">
-            <h2>Enter member ID:</h2>
+            <h2>Member details:</h2>
+            <div class="w3-row w3-container" >
+                <div class="w3-col w3-container" style="width:30%">
+                    <select id="memberGroupCombo" class="combo-1">
+                        <option value="allMem" selected>All Members</option>
+                        <option value="activeMem">Active Members</option>
+                    </select>
+                </div>  
+                <div class="w3-row w3-container" >
+                    <div class="w3-col w3-container" style="width:50%">
+                        <button id="fetchDetailsBtn" onclick="fetchMemberDetails()">FETCH</button>  
+                    </div>   
+                </div>  
+            </div>             
+                <table class="data-table" style="width:100%">
+                    <thead id="memberDetailTabHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email Address</th>
+                            <th>Contact Number</th>
+                            <th>Membership Number</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberDetailTabBody">
+                    </tbody>
+            </table>
         </div>
 
 <!--Renew Membership modal-->
@@ -291,7 +317,7 @@
 
             <div class="w3-row w3-container" >
                 <div class="w3-col w3-container" style="width:65%">
-                    <button id="submitBtn" style="float:right" onclick="renewMembership()">RENEW</button>  
+                    <button id="renewBtn" style="float:right" onclick="renewMembership()">RENEW</button>  
                 </div>   
             </div> 
         </div>                
@@ -305,6 +331,7 @@
     <script>
         window.onload = function() {
             addMemberModalOpen();
+            fetchMemberDetails();
         }
         $("#addMemberModal input").keyup(function () {
             if (this.value.length == this.maxLength) {
