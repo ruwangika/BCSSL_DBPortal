@@ -243,12 +243,13 @@
                         <option value="allMem" selected>All Members</option>
                         <option value="activeMem">Active Members</option>
                     </select>
-                </div>  
-                <div class="w3-row w3-container" >
-                    <div class="w3-col w3-container" style="width:50%">
-                        <button id="fetchDetailsBtn" onclick="fetchMemberDetails()">FETCH</button>  
-                    </div>   
-                </div>  
+                </div>
+                <div class="w3-col w3-container" style="width:15%">
+                    <button id="fetchDetailsBtn" onclick="fetchMemberDetails()">FETCH</button>  
+                </div> 
+                <div class="w3-col w3-container" style="width:25%">
+                    <button id="copyEmailAddressesBtn" onclick="copyEmailAddresses()" style="width:230px">COPY EMAIL ADDRESSES</button>  
+                </div> 
             </div>             
                 <table class="data-table" style="width:100%">
                     <thead id="memberDetailTabHead">
@@ -329,6 +330,7 @@
     </div>
 
     <script>
+        var emailAddressList = [];
         window.onload = function() {
             addMemberModalOpen();
             fetchMemberDetails();

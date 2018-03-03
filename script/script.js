@@ -318,6 +318,7 @@ String.prototype.lpad = function(padString, length) {
 // }
 
 function fetchMemberDetails() {
+    emailAddressList = [];
     var tableBody = document.getElementById('memberDetailTabBody');
     $('#memberDetailTabBody').empty();
     var memberGroup = $("#memberGroupCombo").val();
@@ -334,7 +335,7 @@ function fetchMemberDetails() {
             displayDataInTable(data);
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            console.log("Can't get ID!");
+            console.log("Cannot retrieve data!");
             console.log(XMLHttpRequest);
         }    
     });
@@ -344,7 +345,34 @@ function displayDataInTable(data) {
     for (var i = 0; i < data.length; i++) {
         var member = data[i];
         var rowStr = '<tr><td>'+member.ID+'</td><td>'+member.name+'</td><td>'+member.email+'</td><td>'+member.contactNo+'</td><td>'+member.membershipNo+'</td></tr>';
+        emailAddressList.push(member.email);
         var tableBody = document.getElementById('memberDetailTabBody');
         tableBody.innerHTML += rowStr;
+    }
+}
+
+function copyEmailAddresses() {
+    copyToClipboard(emailAddressList.toString());
+}
+
+function copyToClipboard(text) {
+    if (window.clipboardData && window.clipboardData.setData) {
+        // IE specific code path to prevent textarea being shown while dialog is visible.
+        return clipboardData.setData("Text", text); 
+
+    } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = text;
+        textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+        } catch (ex) {
+            console.warn("Copy to clipboard failed.", ex);
+            return false;
+        } finally {
+            document.body.removeChild(textarea);
+        }
     }
 }
